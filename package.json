@@ -1,0 +1,76 @@
+{
+  "name": "selenium-mcp-server",
+  "version": "1.0.0",
+  "description": "Comprehensive Selenium MCP Server with full WebDriver functionality for browser automation and testing",
+  "type": "module",
+  "main": "dist/index.js",
+  "bin": {
+    "selenium-mcp-server": "./wrapper.cjs"
+  },
+  "files": [
+    "dist/",
+    "wrapper.cjs",
+    "README.md"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "dev": "tsx src/index.ts",
+    "prepublishOnly": "npm run build",
+    "clean": "rimraf dist",
+    "build:clean": "npm run clean && npm run build",
+    "test": "echo \"Tests not implemented yet\" && exit 0",
+    "lint": "eslint src/**/*.ts --fix",
+    "format": "prettier --write src/**/*.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "mcp",
+    "selenium",
+    "webdriver",
+    "browser",
+    "automation",
+    "testing",
+    "web-scraping",
+    "model-context-protocol",
+    "typescript",
+    "chrome",
+    "firefox",
+    "edge",
+    "safari"
+  ],
+  "author": {
+    "name": "Isaac Agbobli"
+  },
+  "license": "MIT",
+  "homepage": "",
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "bugs": {
+    "url": "https://github.com/agbobli5373/selenium-mcp-server/issues"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^0.4.0",
+    "selenium-webdriver": "^4.15.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "@types/selenium-webdriver": "^4.1.0",
+    "typescript": "^5.0.0",
+    "tsx": "^4.0.0",
+    "rimraf": "^5.0.0",
+    "eslint": "^8.0.0",
+    "@typescript-eslint/eslint-plugin": "^6.0.0",
+    "@typescript-eslint/parser": "^6.0.0",
+    "prettier": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "os": [
+    "linux",
+    "win32"
+  ]
+}
