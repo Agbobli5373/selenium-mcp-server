@@ -169,7 +169,7 @@ Notes
 
 1. Clone the project
 ```bash
-git clone https://github.com/your-username/selenium-mcp-server.git
+git clone https://github.com/agbobli5373/selenium-mcp-server.git
 cd selenium-mcp-server
 ```
 
