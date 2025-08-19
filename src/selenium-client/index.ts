@@ -26,5 +26,3 @@
      BaseManager
  } from './types';
 
-//  // Legacy export for backward compatibility
-//  export { SeleniumClient as SeleniumClientLegacy } from './selenium-client';
