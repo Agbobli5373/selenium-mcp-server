@@ -2,6 +2,10 @@
 
 A Model Context Protocol (MCP) server that provides seamless integration between MCP clients and Selenium WebDriver. This server enables natural language interactions with web browsers for automated testing, web scraping, and page analysis.
 
+## Docs
+
+See the `docs/` folder for a concise API reference, usage examples, and contributing notes.
+
 ## Features
 
 - Natural Language Interface: control browsers using conversational commands
@@ -26,57 +30,68 @@ Driver installation and configuration guidance for each supported browser:
 
 - Chrome (ChromeDriver)
   - Recommended: allow `selenium-webdriver` to manage ChromeDriver automatically.
-  - Manual install (local project): 
+  - Manual install (local project):
+
 ```bash
 # bash
 npm install --save-dev chromedriver
 ```
-  - On Windows (cmd.exe) you can add the driver to PATH before starting the wrapper:
+
+- On Windows (cmd.exe) you can add the driver to PATH before starting the wrapper:
+
 ```bash
 # cmd.exe
 set PATH=%PATH%;C:\path\to\chromedriver && node wrapper.cjs
 ```
-  - Or provide the driver path when creating the WebDriver instance in code.
+
+- Or provide the driver path when creating the WebDriver instance in code.
 
 - Firefox (GeckoDriver)
   - Download from Mozilla GeckoDriver releases or install via npm:
+
 ```bash
 # bash
 npm install --save-dev geckodriver
 ```
-  - Add the geckodriver binary to PATH or pass its location to your WebDriver builder.
+
+- Add the geckodriver binary to PATH or pass its location to your WebDriver builder.
 
 - Edge (msedgedriver)
   - Download from Microsoft Edge WebDriver releases or use an npm package if available.
   - Add the msedgedriver binary to PATH or pass its location when initializing the driver.
 
 Notes:
+
 - Ensure the driver version matches the installed browser major version.
 - For CI environments, install the matching driver binary in the build image or use a tool that manages drivers automatically.
 
 ## Usage examples
 
-1) Start the wrapper directly (for local testing)
+1. Start the wrapper directly (for local testing)
+
 ```bash
 # bash
 node wrapper.cjs
 # You should see: Selenium MCP Server running on stdio
 ```
 
-2) Start wrapper with a limited tool set (Linux/macOS)
+2. Start wrapper with a limited tool set (Linux/macOS)
+
 ```bash
 # bash
 export MCP_TOOLS='["start_browser","navigate","click_element","send_keys"]'
 node wrapper.cjs
 ```
 
-3) Start wrapper with a limited tool set (Windows cmd.exe)
+3. Start wrapper with a limited tool set (Windows cmd.exe)
+
 ```bash
 # cmd.exe
 set MCP_TOOLS=["start_browser","navigate","click_element","send_keys"] && node wrapper.cjs
 ```
 
-4) Example MCP client server config (Windows)
+4. Example MCP client server config (Windows)
+
 ```json
 {
   "servers": {
@@ -88,7 +103,8 @@ set MCP_TOOLS=["start_browser","navigate","click_element","send_keys"] && node w
 }
 ```
 
-5) Example: launching a browser via an MCP client
+5. Example: launching a browser via an MCP client
+
 - Configure your MCP client to connect to the `wrapper.cjs` process (see config above).
 - Use the `start_browser` tool from the client to open Chrome/Firefox/Edge, then `navigate` to a URL and `get_page_source` or other tools to inspect the page.
 
@@ -99,6 +115,7 @@ Below are concise, copy-ready examples showing typical tool calls and a short ps
 Tool call examples (JSON payloads — adapt to your MCP client library):
 
 Start a browser
+
 ```json
 {
   "tool": "start_browser",
@@ -110,6 +127,7 @@ Start a browser
 ```
 
 Navigate to a page
+
 ```json
 {
   "tool": "navigate",
@@ -118,6 +136,7 @@ Navigate to a page
 ```
 
 Get page source
+
 ```json
 {
   "tool": "get_page_source",
@@ -126,6 +145,7 @@ Get page source
 ```
 
 Click an element (example CSS selector)
+
 ```json
 {
   "tool": "click_element",
@@ -134,14 +154,20 @@ Click an element (example CSS selector)
 ```
 
 Send keys to an input
+
 ```json
 {
   "tool": "send_keys",
-  "args": { "by": "css", "value": "input[name=email]", "text": "user@example.com" }
+  "args": {
+    "by": "css",
+    "value": "input[name=email]",
+    "text": "user@example.com"
+  }
 }
 ```
 
 Close browser
+
 ```json
 {
   "tool": "close_browser",
@@ -150,17 +176,26 @@ Close browser
 ```
 
 Example sequence (pseudo-code)
+
 ```javascript
 // JavaScript (pseudo-code; adapt to your MCP client library)
-await mcpClient.callTool('start_browser', { browser: 'chrome', options: { headless: true } });
-await mcpClient.callTool('navigate', { url: 'https://example.com' });
-const pageHtml = await mcpClient.callTool('get_page_source', {});
-await mcpClient.callTool('click_element', { by: 'css', value: 'button#agree' });
-await mcpClient.callTool('send_keys', { by: 'css', value: 'input#email', text: 'foo@bar.com' });
-await mcpClient.callTool('close_browser', {});
+await mcpClient.callTool("start_browser", {
+  browser: "chrome",
+  options: { headless: true },
+});
+await mcpClient.callTool("navigate", { url: "https://example.com" });
+const pageHtml = await mcpClient.callTool("get_page_source", {});
+await mcpClient.callTool("click_element", { by: "css", value: "button#agree" });
+await mcpClient.callTool("send_keys", {
+  by: "css",
+  value: "input#email",
+  text: "foo@bar.com",
+});
+await mcpClient.callTool("close_browser", {});
 ```
 
 Notes
+
 - Tool availability may be limited by the `MCP_TOOLS` environment variable in your MCP client config.
 - All examples are protocol-agnostic JSON payloads; adapt them to your chosen MCP client library's API.
 - Handle errors and timeouts from the server when automating long-running flows.
@@ -168,25 +203,30 @@ Notes
 ## Installation
 
 1. Clone the project
+
 ```bash
 git clone https://github.com/agbobli5373/selenium-mcp-server.git
 cd selenium-mcp-server
 ```
 
 2. Install dependencies
+
 ```bash
 npm install
 ```
 
 3. Build the project
+
 ```bash
 npm run build
 ```
 
 4. Test the server (optional)
+
 ```bash
 node dist/index.js
 ```
+
 You should see: `Selenium MCP Server running on stdio`
 
 ## Configuration
@@ -194,6 +234,7 @@ You should see: `Selenium MCP Server running on stdio`
 ### MCP Client Configuration
 
 Windows:
+
 ```json
 {
   "servers": {
@@ -206,6 +247,7 @@ Windows:
 ```
 
 macOS / Linux:
+
 ```json
 {
   "servers": {
@@ -227,6 +269,7 @@ Control available tools with `MCP_TOOLS`:
 - `MCP_TOOLS` with specific tools: only those tools become available
 
 Example — default (all tools available):
+
 ```json
 {
   "servers": {
@@ -239,6 +282,7 @@ Example — default (all tools available):
 ```
 
 Example — limit to specific tools:
+
 ```json
 {
   "servers": {
