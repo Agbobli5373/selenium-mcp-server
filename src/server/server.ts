@@ -13,7 +13,7 @@ import { getAllowedTools } from "./get-allowed-tools.js";
 import { executeToolMethod } from "./execute-tool-method.js";
 
 
-export class OptimizedSeleniumMCPServer {
+export class SeleniumMCPServer {
     private server: Server;
     private seleniumClient: SeleniumClient | null = null;
     private tools: Tool[];
@@ -95,6 +95,6 @@ export class OptimizedSeleniumMCPServer {
     async run() {
         const transport = new StdioServerTransport();
         await this.server.connect(transport);
-        console.error("Selenium MCP Server running on stdio");
+        console.log("Selenium MCP Server running on stdio");
     }
 }
