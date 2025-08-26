@@ -7,6 +7,7 @@ import { windowManagementTools } from "./window-management.js";
 import { frameTools } from "./frame-tools.js";
 import { waitTools } from "./wait-tools.js";
 import { aiTools } from "./ai-tools.js";
+import { consoleTools } from "./console-tools.js";
 
 /**
  * Composed tools array — split into smaller modules for readability.
@@ -19,5 +20,6 @@ export const tools: Tool[] = [
     ...windowManagementTools,
     ...frameTools,
     ...waitTools,
+    ...consoleTools,
     ...aiTools
 ];

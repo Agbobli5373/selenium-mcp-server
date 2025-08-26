@@ -121,6 +121,10 @@ export async function executeToolMethod(client: SeleniumClient, toolName: string
         case "validate_selectors":
             return client.validateSelectors(args.selectors);
 
+        // CONSOLE / BROWSER LOGS (1 tool)
+        case "get_browser_console":
+            return client.getBrowserConsole(args.level, args.since);
+
         default:
             throw new Error(`Unknown tool: ${toolName}`);
     }

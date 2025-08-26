@@ -151,4 +151,27 @@ export class BrowserManager extends BaseManager {
         }
         return builder.forBrowser('safari').setSafariOptions(safariOptions);
     }
+
+    async getBrowserConsole(level?: string, since?: number): Promise<{ logs: Array<{ level: string; message: string; timestamp: number }> }> {
+        this.ensureDriverExists();
+        try {
+            // selenium-webdriver exposes logs via driver.manage().logs().get('browser')
+            const logs = await this.driver!.manage().logs().get('browser');
+            const normalized = (logs || []).map((entry: any) => ({
+                level: entry.level && entry.level.name ? entry.level.name : String(entry.level),
+                message: entry.message || '',
+                timestamp: entry.timestamp || 0
+            }));
+            let filtered = normalized;
+            if (level && level !== 'ALL') {
+                filtered = filtered.filter(l => l.level === level);
+            }
+            if (since) {
+                filtered = filtered.filter(l => l.timestamp > since);
+            }
+            return { logs: filtered };
+        } catch (error) {
+            throw new Error(`Failed to get browser console logs: ${error instanceof Error ? error.message : String(error)}`);
+        }
+    }
 }

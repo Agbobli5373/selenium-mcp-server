@@ -71,6 +71,10 @@ export class SeleniumClient {
         return this.browserManager.getWindowSize();
     }
 
+    async getBrowserConsole(level?: string, since?: number): Promise<{ logs: Array<{ level: string; message: string; timestamp: number }> }> {
+        return this.browserManager.getBrowserConsole(level, since);
+    }
+
     // Navigation
     async navigate(url: string): Promise<SeleniumResponse & { url: string }> {
         return this.navigationManager.navigate(url);
