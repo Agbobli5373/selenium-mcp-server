@@ -1,9 +1,11 @@
 import { WebDriver, WebElement } from 'selenium-webdriver';
 import { BrowserOptions, LocatorStrategy, SeleniumResponse } from './types.js';
 
-import { ActionManager, BrowserManager, ElementInspector,
-         ElementInteractor, ElementLocator, NavigationManager, 
-         PageAnalyzer, WindowManager } from './index.js';
+import {
+    ActionManager, BrowserManager, ElementInspector,
+    ElementInteractor, ElementLocator, NavigationManager,
+    PageAnalyzer, WindowManager, AccessibilityManager
+} from './index.js';
 
 export class SeleniumClient {
     private driver: WebDriver | null = null;
@@ -15,6 +17,7 @@ export class SeleniumClient {
     private actionManager: ActionManager;
     private windowManager: WindowManager;
     private pageAnalyzer: PageAnalyzer;
+    private accessibilityManager: AccessibilityManager;
 
     constructor() {
         this.browserManager = new BrowserManager();
@@ -25,6 +28,7 @@ export class SeleniumClient {
         this.actionManager = new ActionManager();
         this.windowManager = new WindowManager();
         this.pageAnalyzer = new PageAnalyzer();
+        this.accessibilityManager = new AccessibilityManager();
     }
 
     private updateAllManagers(): void {
@@ -36,6 +40,7 @@ export class SeleniumClient {
         this.actionManager.setDriver(this.driver);
         this.windowManager.setDriver(this.driver);
         this.pageAnalyzer.setDriver(this.driver);
+        this.accessibilityManager.setDriver(this.driver);
     }
 
     // Browser Management
@@ -289,6 +294,10 @@ export class SeleniumClient {
         language: string;
     }> {
         return this.pageAnalyzer.getPageMetadata();
+    }
+
+    async runAccessibilityScan(contextSelector: string | null = null, axeOptions: any = {}, savePath?: string) {
+        return this.accessibilityManager.runAxeScan(contextSelector, axeOptions, savePath);
     }
 }
 

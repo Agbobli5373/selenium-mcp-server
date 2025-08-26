@@ -121,6 +121,10 @@ export async function executeToolMethod(client: SeleniumClient, toolName: string
         case "validate_selectors":
             return client.validateSelectors(args.selectors);
 
+        // ACCESSIBILITY (1 tool)
+        case "run_accessibility_scan":
+            return client.runAccessibilityScan(args.contextSelector ?? null, args.axeOptions ?? {}, args.savePath);
+
         // CONSOLE / BROWSER LOGS (1 tool)
         case "get_browser_console":
             return client.getBrowserConsole(args.level, args.since);

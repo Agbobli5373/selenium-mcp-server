@@ -10,6 +10,7 @@
  export { ActionManager } from './action-manager.js';
  export { WindowManager } from './window-manager.js';
  export { PageAnalyzer } from './page-analyzer.js';
+ export { AccessibilityManager } from './accessibility-manager.js';
 
  // Types and interfaces
  export type {
@@ -25,4 +26,3 @@
      SelectorValidationResult,
      BaseManager
  } from './types';
-

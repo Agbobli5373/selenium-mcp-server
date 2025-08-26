@@ -8,6 +8,7 @@ import { frameTools } from "./frame-tools.js";
 import { waitTools } from "./wait-tools.js";
 import { aiTools } from "./ai-tools.js";
 import { consoleTools } from "./console-tools.js";
+import { accessibilityTools } from "./accessibility-tools.js";
 
 /**
  * Composed tools array — split into smaller modules for readability.
@@ -21,5 +22,6 @@ export const tools: Tool[] = [
     ...frameTools,
     ...waitTools,
     ...consoleTools,
-    ...aiTools
+    ...aiTools,
+    ...accessibilityTools
 ];
