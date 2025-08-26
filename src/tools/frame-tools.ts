@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Frame management tools extracted from the original long tools file.
+ * Frame management tools.
  */
 export const frameTools: Tool[] = [
     {

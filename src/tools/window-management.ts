@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Window management tools extracted from the original long tools file.
+ * Window management tools.
  */
 export const windowManagementTools: Tool[] = [
     {

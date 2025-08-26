@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Wait condition tools extracted from the original long tools file.
+ * Wait condition tools.
  */
 export const waitTools: Tool[] = [
     {

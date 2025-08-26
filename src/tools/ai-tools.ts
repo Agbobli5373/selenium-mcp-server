@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * AI-optimized discovery tools extracted from the original long tools file.
+ * AI-optimized discovery tools.
  */
 export const aiTools: Tool[] = [
     {

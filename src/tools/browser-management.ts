@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Browser management tools extracted from the original long tools file.
+ * Browser management tools.
  * This module contains tools that start/stop and control basic navigation.
  */
 export const browserManagementTools: Tool[] = [

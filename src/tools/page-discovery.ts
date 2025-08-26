@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Page discovery tools extracted from the original long tools file.
+ * Page discovery tools.
  */
 export const pageDiscoveryTools: Tool[] = [
     {

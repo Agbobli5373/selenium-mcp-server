@@ -1,7 +1,7 @@
 import { Tool } from "@modelcontextprotocol/sdk/types.js";
 
 /**
- * Element analysis tools extracted from the original long tools file.
+ * Element analysis tools.
  */
 export const elementAnalysisTools: Tool[] = [
     {
